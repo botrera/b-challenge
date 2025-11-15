@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize-typescript';
-import { logger } from '../lib';
 import { config } from '../config';
 
 let sequelizeInstance: Sequelize;
@@ -9,7 +8,6 @@ export const sequelize = () => {
     return sequelizeInstance;
   }
   let models = [`${__dirname}/*.model.js`];
-  // ugly hack
   const env = config.env;
   if (env === 'LOCAL' || env === 'TEST') {
     models = [`${__dirname}/*.model.ts`];
@@ -30,7 +28,7 @@ export const sequelize = () => {
       underscored: true,
       freezeTableName: true,
     },
-    logging: config.db.enableLogs ? (msg) => logger.debug(msg) : false,
+    logging: true,
     models,
     modelMatch: (filename, member) => {
       return filename.substring(0, filename.indexOf('.model')).replace(/_/g, '') === member.toLowerCase();

@@ -1,9 +1,7 @@
 import httpContext from 'express-http-context';
 import pino from 'pino';
-import { config } from '../config';
 import { CustomError } from './custom_error.lib';
 
-// Data to be included in every log
 const mixin = () => {
   return {
     traceId: httpContext.get('traceId'),
@@ -13,18 +11,17 @@ const mixin = () => {
 };
 
 export const logger = pino({
-  level: config.logger.level, // Minimum logging level. trace = log everything
-  base: null, // don't add pid & hostname to logs
+  level: 'trace',
+  base: null,
   transport: {
     target: 'pino-pretty',
     options: {
-      colorize: ['LOCAL', 'TEST'].includes(config.env),
+      colorize: true,
     },
   },
-  nestedKey: 'data', // Key to place any logged object under
+  nestedKey: 'data',
   mixin,
   serializers: {
-    // Needed because errors don't get serialized when using nestedKey
     /* eslint-disable */
     data: (data: any | Error) => {
       if (data instanceof Error || data instanceof CustomError) {

@@ -1,5 +1,5 @@
 const getHealthStatus = (): string => {
-  return 'Up & running ;)!';
+  return 'Up & running';
 };
 
 export const healthService = {

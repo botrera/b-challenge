@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./.postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  node-template:
+    container_name: node-template-test
+    image: node:18.16-alpine
+    env_file: ./.env.test
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - $PORT:$PORT
+    depends_on:
+      - postgres
+    command: sh -c "yarn install ; yarn sequelize db:create ; yarn dev"

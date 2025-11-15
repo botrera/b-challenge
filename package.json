@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon",
     "docker-compose": "docker-compose up",
-    "test": "env $(cat .env.test | xargs) ENV=test jest --verbose=false --coverage --detectOpenHandles --forceExit"
+    "test": "bash test.sh"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.25.0",

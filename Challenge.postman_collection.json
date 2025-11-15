@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "40ef813f-0b57-4b34-b22e-e76ea8f6df67",
+		"name": "Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26639099"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuMSIsImlhdCI6MTc2MjczNjQyNiwiZXhwIjoxNzYyODIyODI2fQ.qP5yW_t8q-rzsu4BwwJ5HFrkjYy2sa_vm58DDyRLqZ-h64EVckTOJuk6lcYxYMXeiREJAJfuL_TEowIBONIn5w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"formatType\": \"1v1\",\r\n  \"minTierId\": 19, \r\n  \"maxTierId\": 26, \r\n  \"regionId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear transaccion",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"origin\": \"04e5fe66-11f1-4db6-97a7-48aa2883a759\",\r\n  \"destination\": \"f2157f72-e7c9-4532-b753-13c3134852c5\",\r\n  \"amount\": 6000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get transacciones de usuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/transactions?userId=04e5fe66-11f1-4db6-97a7-48aa2883a759",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "04e5fe66-11f1-4db6-97a7-48aa2883a759"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rechazar transaccion",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/transactions/:id/reject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"transactions",
+						":id",
+						"reject"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "401b1e8a-f79f-42d2-9061-16c10454762d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aprobar transaccion",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/transactions/:id/approve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"transactions",
+						":id",
+						"approve"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "401b1e8a-f79f-42d2-9061-16c10454762d"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

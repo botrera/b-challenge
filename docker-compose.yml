@@ -3,24 +3,35 @@ version: "3.9"
 services:
   postgres:
     image: postgres:14-alpine
-    container_name: postgres-template
+    container_name: b-challenge-postgres
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: node_template
     volumes:
       - ./.postgres:/var/lib/postgresql/data
     ports:
-      - $HOST_DATABASE_PORT:5432
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
-  node_template:
+  app:
     image: node:18.16-alpine
-    container_name: node-template
+    container_name: b-challenge-app
     working_dir: /app
-    env_file: ./.env
+    environment:
+      ENV: LOCAL
+      PORT: 3000
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/node_template
     volumes:
       - .:/app
+      - /app/node_modules
     ports:
-      - $PORT:$PORT
+      - "3000:3000"
     depends_on:
-      - postgres
-    command: sh -c "yarn install ; yarn sequelize db:create ; yarn dev"
+      postgres:
+        condition: service_healthy
+    command: sh -c "yarn install && yarn dev"

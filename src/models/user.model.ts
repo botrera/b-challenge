@@ -1,12 +1,7 @@
-import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 @Table({
   modelName: 'user',
-  scopes: {
-    onlyData: {
-      attributes: { exclude: ['password', 'verifyEmailToken'] },
-    },
-  },
 })
 export class UserModel extends Model<UserModel> {
   @Column({

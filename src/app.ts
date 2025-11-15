@@ -1,12 +1,10 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import httpContext from 'express-http-context';
-import { Request, Response, NextFunction } from 'express-serve-static-core';
 import * as bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import { config } from './config';
 import { customErrors } from './enums';
 import { api } from './routes';
 import { sequelize } from './models';
@@ -48,7 +46,6 @@ export class App {
   }
 
   private configureLogging() {
-    // const format = config.env === 'LOCAL' ? 'dev' : 'tiny';
     const httpLogger = morgan('dev', {
       skip: (req: Request, _res: Response) => req.baseUrl === '/api/health',
     });

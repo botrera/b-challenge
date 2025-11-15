@@ -7,14 +7,6 @@ import { userService } from './';
 import { Status, ApiError } from '../enums';
 import { CustomError, logger } from '../lib';
 
-const getTransactions = async (): Promise<TransactionDTO[]> => {
-  const transaction = await TransactionModel.findAll();
-
-  const transactionDTO = plainToClass(TransactionDTO, transaction);
-
-  return transactionDTO;
-};
-
 const getTransactionById = async (transactionId: string): Promise<TransactionModel> => {
   const transaction = await TransactionModel.findByPk(transactionId);
 
@@ -165,7 +157,6 @@ const getTransactionsByUserId = async (userId: string): Promise<TransactionDTO[]
 };
 
 export const transactionService = {
-  getTransactions,
   getTransactionById,
   createTransaction,
   approveTransaction,

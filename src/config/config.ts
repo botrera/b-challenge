@@ -3,6 +3,5 @@ export const config = {
   port: parseInt(process.env.PORT) || 3000,
   db: {
     url: process.env.DATABASE_URL,
-    enableLogs: process.env.DB_ENABLE_LOGS === 'true',
   }
 };

@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { UserModel } from './';
 import { Status } from '../enums';
 
@@ -22,9 +22,6 @@ export class TransactionModel extends Model<TransactionModel> {
   @ForeignKey(() => UserModel)
   @Column
   public destination: string;
-
-  @BelongsTo(() => UserModel)
-  public user: UserModel;
 
   @Column({ allowNull: false })
   public amount: number;

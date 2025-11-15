@@ -62,7 +62,7 @@ export class App {
     this.server.use(
       cors({
         credentials: true,
-        origin: config.baseUrlFront,
+        origin: '*',
       }),
     );
     this.server.use(cookieParser());

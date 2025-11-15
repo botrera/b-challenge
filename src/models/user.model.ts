@@ -1,5 +1,4 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { SessionModel } from '.';
 
 @Table({
   modelName: 'user',
@@ -8,17 +7,16 @@ import { SessionModel } from '.';
       attributes: { exclude: ['password', 'verifyEmailToken'] },
     },
   },
-  paranoid: true,
 })
 export class UserModel extends Model<UserModel> {
   @Column({
-    type: DataType.INTEGER,
-    autoIncrement: true,
+    allowNull: false,
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
     unique: true,
     primaryKey: true,
-    allowNull: false,
   })
-  public userId: number;
+  public userId: string;
 
   @Column({
     unique: true,
@@ -28,65 +26,10 @@ export class UserModel extends Model<UserModel> {
   @Column({
     type: DataType.STRING,
   })
-  public firstName: string;
+  public name: string;
 
-  @Column({
-    type: DataType.STRING,
-  })
-  public lastName: string;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public phone: string;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public password: string;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public birthdate: Date;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public country: string;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public city: string;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public address: string;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public emailIsVerified: boolean;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public verifyEmailToken: string;
-
-  @Column({
-    type: DataType.STRING,
-  })
-  public perfilePictureUrl: string;
-
-  @Column({
-    type: DataType.DATE,
-  })
-  public deletedAt: Date;
-
-  @HasMany(() => SessionModel, 'user_id')
-  public sessions: SessionModel[];
+  @Column({ allowNull: false })
+  public balance: number;
 }
 
 export default UserModel;

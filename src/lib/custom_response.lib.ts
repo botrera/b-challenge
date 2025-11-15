@@ -15,7 +15,7 @@ export class CustomResponse<T> {
   constructor(result: boolean, data?: T, errorCode?: number) {
     this.data = data;
 
-    if (errorCode === ApiError.Server.APP_VERSION_OBSOLETE) {
+    if (errorCode === ApiError.Server.GENERIC) {
       this.result = false;
       this.needUpdate = true;
       return;

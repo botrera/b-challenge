@@ -16,8 +16,8 @@ module.exports = {
         required: true,
       },
       balance: {
-        type: Sequelize.DECIMAL(12, 2),
-        allowNull: false,
+        type: Sequelize.FLOAT,
+        required: true,
       },
       created_at: {
         type: Sequelize.DATE,

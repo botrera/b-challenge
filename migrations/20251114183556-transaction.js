@@ -24,8 +24,8 @@ module.exports = {
         allowNull: false,
       },
       amount: {
-        type: Sequelize.DECIMAL(12, 2),
-        allowNull: false,
+        type: Sequelize.FLOAT,
+        required: true,
       },
       status: {
         type: Sequelize.ENUM,

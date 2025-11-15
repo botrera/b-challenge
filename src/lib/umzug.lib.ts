@@ -10,16 +10,11 @@ const umzugMigrations = new Umzug({
   migrations: {
     glob: 'migrations/*.js',
     resolve: ({ name, path, context }) => {
-      // adjust the migration parameters Umzug will
-      // pass to migration methods, this is done because
-      // Sequilize-CLI generates migrations that require
-      // two parameters be passed to the up and down methods
-      // but by default Umzug will only pass the first
-      const migration = require(path || ''); // eslint-disable-line
+      const migration = require(path || '');
       return {
         name,
-        up: async () => await migration.up(context, Sequelize), // eslint-disable-line
-        down: async () => await migration.down(context, Sequelize), // eslint-disable-line
+        up: async () => await migration.up(context, Sequelize),
+        down: async () => await migration.down(context, Sequelize),
       };
     },
   },
@@ -32,11 +27,11 @@ const umzugSeeders = new Umzug({
   migrations: {
     glob: config.env === 'PROD' ? 'seeders/prod/*.js' : 'seeders/dev_qa/*.js',
     resolve: ({ name, path, context }) => {
-      const seeder = require(path || ''); // eslint-disable-line
+      const seeder = require(path || '');
       return {
         name,
-        up: async () => await seeder.up(context, Sequelize), // eslint-disable-line
-        down: async () => await seeder.down(context, Sequelize), // eslint-disable-line
+        up: async () => await seeder.up(context, Sequelize),
+        down: async () => await seeder.down(context, Sequelize),
       };
     },
   },

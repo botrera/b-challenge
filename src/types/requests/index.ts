@@ -1,1 +1,1 @@
-export { UserSignupRequest, UserUpdateRequest } from './user.request';
+export { TransactionRequest } from './transaction.request';

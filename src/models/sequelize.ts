@@ -28,7 +28,7 @@ export const sequelize = () => {
       underscored: true,
       freezeTableName: true,
     },
-    logging: true,
+    logging: false,
     models,
     modelMatch: (filename, member) => {
       return filename.substring(0, filename.indexOf('.model')).replace(/_/g, '') === member.toLowerCase();

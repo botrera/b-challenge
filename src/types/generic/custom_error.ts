@@ -7,7 +7,7 @@ interface CustomError {
   message: string;
   showMessage: ShowMessage;
   HTTPStatusCode?: number;
-  errorName: string;
+  errorName?: string;
   type?: string;
 }
 
